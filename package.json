@@ -2,9 +2,9 @@
   "name": "std-feedback-backend",
   "version": "1.0.0",
   "description": "API for feedback service",
-  "main": "src/app.js",
+  "main": "src/App.js",
   "scripts": {
-    "start": "nodemon --exec babel-node src/app.js",
+    "start": "nodemon src/App.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
@@ -15,10 +15,6 @@
     "sequelize": "^5.9.2"
   },
   "devDependencies": {
-    "@babel/core": "^7.6.4",
-    "@babel/node": "^7.6.3",
-    "@babel/preset-env": "^7.6.3",
-    "babel-eslint": "^10.0.3",
     "eslint": "^6.5.1",
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-config-prettier": "^6.4.0",
