@@ -20,6 +20,7 @@ router.post('/add', (req, res) => {
 router.get('/printunread', (req, res) => {
   try {
     Feedback.findAll({
+      order: [['id', 'DESC']],
       where: {
         read: [false],
       },
