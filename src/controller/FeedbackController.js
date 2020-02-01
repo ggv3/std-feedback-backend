@@ -20,7 +20,7 @@ router.post('/add', (req, res) => {
 router.get('/printunread', (req, res) => {
   try {
     Feedback.findAll({
-      order: [['id', 'DESC']],
+      order: [['id', 'ASC']],
       where: {
         read: [false],
       },
@@ -40,7 +40,7 @@ router.get('/printunread', (req, res) => {
 router.get('/printall', (req, res) => {
   try {
     Feedback.findAll({
-      order: [['id', 'DESC']],
+      order: [['id', 'ASC']],
     }).then(feedbacks => {
       res.status(200).send(feedbacks);
     });
