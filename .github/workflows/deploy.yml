@@ -1,0 +1,23 @@
+name: Deploy
+on:
+  push:
+    branches:
+      - master
+jobs:
+  deploy:
+    runs-on: self-hosted
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+      - name: Deploy
+        run: |
+          echo Installing dependencies...
+          npm install
+          echo Setting environment variables...
+          echo ${{ secrets.PORT }} >> .env
+          echo ${{ secrets.DB_NAME }} >> .env
+          echo ${{ secrets.DB_USERNAME }} >> .env
+          echo ${{ secrets.DB_PASSWORD }} >> .env
+          echo ${{ secrets.DB_DIALECT }} >> .env
+          echo Building...
+          npm run build

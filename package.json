@@ -5,6 +5,8 @@
   "main": "src/App.js",
   "scripts": {
     "start": "nodemon src/App.js",
+    "build": "babel -d build src",
+    "prod": "node build/App.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
@@ -16,6 +18,10 @@
     "sequelize": "^5.9.2"
   },
   "devDependencies": {
+    "@babel/cli": "^7.6.4",
+    "@babel/core": "^7.6.4",
+    "@babel/node": "^7.6.3",
+    "@babel/preset-env": "^7.6.3",
     "eslint": "^6.5.1",
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-config-prettier": "^6.4.0",

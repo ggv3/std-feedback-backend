@@ -1,10 +1,9 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const db = require('./db/Database');
-const { config } = require('./config');
 const rateLimit = require('express-rate-limit');
 const FeedbackController = require('./controller/FeedbackController');
-
+require('dotenv').config();
 db.initDatabase();
 
 const app = express();
@@ -37,6 +36,6 @@ app.use((req, res, next) => {
 
 app.use('/feedbacks', FeedbackController);
 
-app.listen(config.PORT, () =>
-  console.log(`App listening on port ${config.PORT}!`),
+app.listen(process.env.PORT, () =>
+  console.log(`App listening on port ${process.env.PORT}!`),
 );

@@ -1,16 +1,15 @@
 const Sequelize = require('sequelize');
 const Feedback = require('../model/Feedback');
-const { config } = require('../config');
 
 require('dotenv').config();
 
 const initDatabase = () => {
   const sequelize = new Sequelize(
-    config.DBNAME,
-    config.DBUSERNAME,
-    config.DBPASSWORD,
+    process.env.DB_NAME,
+    process.env.DB_USERNAME,
+    process.env.DB_PASSWORD,
     {
-      dialect: config.DBDIALECT,
+      dialect: process.env.DB_DIALECT,
     },
   );
 
