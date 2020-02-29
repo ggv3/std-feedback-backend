@@ -11,7 +11,7 @@ router.post('/add', (req, res) => {
     });
     res.status(200).send('Feedback added');
   } catch (error) {
-    console.log(error);
+    console.log('error', error);
     res.status(500).send('Unexpected error');
   }
 });
