@@ -34,7 +34,7 @@ const initDatabase = () => {
     },
     { sequelize, modelName: 'feedback' },
   );
-  Feedback.sync({ force: true });
+  Feedback.sync();
 };
 
 exports.initDatabase = initDatabase;
