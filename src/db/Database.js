@@ -44,18 +44,18 @@ const initDatabase = () => {
         primaryKey: true,
         autoIncrement: true,
       },
-      userId: { type: Sequelize.INTEGER, field: 'user-id', allowNull: false },
+      userId: { type: Sequelize.INTEGER, field: 'userid', allowNull: false },
       username: { type: Sequelize.TEXT, field: 'username', allowNull: false },
       isOnline: {
         type: Sequelize.BOOLEAN,
-        field: 'is-online',
+        field: 'isonline',
         defaultValue: false,
         allowNull: false,
       },
     },
     { sequelize, modelName: 'twitch_users' },
   );
-  TwitchUsers.sync();
+  TwitchUsers.sync({ force: true });
 };
 
 exports.initDatabase = initDatabase;
