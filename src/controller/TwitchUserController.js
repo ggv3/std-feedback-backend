@@ -8,14 +8,15 @@ router.post('/adduser', (req, res) => {
   try {
     TwitchUsers.create({
       userId: req.body.userId,
+      username: req.body.username,
     });
-    res.status(200).send('User id added');
+    res.status(200).send('User info added');
   } catch (error) {
     res.status(500).send('Unexpected error');
   }
 });
 
-router.get('/getusers', (req, res) => {
+router.get('/getuserids', (req, res) => {
   try {
     TwitchUsers.findAll({
       order: [['id', 'ASC']],
