@@ -1,5 +1,6 @@
 const Sequelize = require('sequelize');
 const Feedback = require('../model/Feedback');
+const TwitchUsers = require('../model/TwitchUsers');
 
 require('dotenv').config();
 
@@ -35,6 +36,25 @@ const initDatabase = () => {
     { sequelize, modelName: 'feedback' },
   );
   Feedback.sync();
+  TwitchUsers.init(
+    {
+      id: {
+        type: Sequelize.INTEGER,
+        field: 'id',
+        primaryKey: true,
+        autoIncrement: true,
+      },
+      userId: { type: Sequelize.INTEGER, field: 'user-id', allowNull: false },
+      isOnline: {
+        type: Sequelize.BOOLEAN,
+        field: 'is-online',
+        defaultValue: false,
+        allowNull: false,
+      },
+    },
+    { sequelize, modelName: 'twitch_users' },
+  );
+  TwitchUsers.sync();
 };
 
 exports.initDatabase = initDatabase;

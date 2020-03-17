@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const db = require('./db/Database');
 const rateLimit = require('express-rate-limit');
 const FeedbackController = require('./controller/FeedbackController');
+const TwitchUserController = require('./controller/TwitchUserController');
 require('dotenv').config();
 db.initDatabase();
 
@@ -35,6 +36,7 @@ app.use((req, res, next) => {
 });
 
 app.use('/feedbacks', FeedbackController);
+app.use('/twitch-users', TwitchUserController);
 
 app.listen(process.env.PORT, () =>
   console.log(`App listening on port ${process.env.PORT}!`),
