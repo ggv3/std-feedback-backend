@@ -55,7 +55,7 @@ const initDatabase = () => {
     },
     { sequelize, modelName: 'twitch_users' },
   );
-  TwitchUsers.sync({ force: true });
+  TwitchUsers.sync();
 };
 
 exports.initDatabase = initDatabase;
