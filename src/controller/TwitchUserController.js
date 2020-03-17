@@ -20,8 +20,27 @@ router.get('/getuserids', (req, res) => {
   try {
     TwitchUsers.findAll({
       order: [['id', 'ASC']],
-    }).then(userIds => {
-      res.status(200).send(userIds);
+    }).then(users => {
+      res.status(200).send(users);
+    });
+  } catch (error) {
+    res.status(500).send('Unexpected error');
+  }
+});
+
+router.post('/updatestreamstatus', (req, res) => {
+  try {
+    TwitchUsers.findAll({
+      where: {
+        userId: req.body.userId,
+      },
+    }).then(users => {
+      users.forEach(u => {
+        u.update({
+          isOnline: !u.isOnline,
+        });
+      });
+      res.status(200).send('Stream status updated');
     });
   } catch (error) {
     res.status(500).send('Unexpected error');
