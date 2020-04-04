@@ -1,10 +1,14 @@
-const express = require('express');
+import express from 'express';
+import Knex from 'knex';
+import knexfile from '../knexfile';
+import FeedbackController from './controller/FeedbackController';
+import TwitchUserController from './controller/TwitchUserController';
+
+const knex = Knex(knexfile);
+
 const bodyParser = require('body-parser');
-const db = require('./db/Database');
 const rateLimit = require('express-rate-limit');
-const FeedbackController = require('./controller/FeedbackController');
 require('dotenv').config();
-db.initDatabase();
 
 const app = express();
 const limiter = rateLimit({
@@ -27,7 +31,8 @@ app.use((req, res, next) => {
   // Request headers you wish to allow
   res.setHeader(
     'Access-Control-Allow-Headers',
-    'X-Requested-With,content-type',
+    // eslint-disable-next-line comma-dangle
+    'X-Requested-With,content-type'
   );
 
   // Pass to next layer of middleware
@@ -35,7 +40,9 @@ app.use((req, res, next) => {
 });
 
 app.use('/feedbacks', FeedbackController);
-
-app.listen(process.env.PORT, () =>
-  console.log(`App listening on port ${process.env.PORT}!`),
-);
+app.use('/twitch-users', TwitchUserController);
+app.listen(process.env.PORT, () => {
+  // eslint-disable-next-line no-console
+  console.log(`App listening on port ${process.env.PORT}!`);
+  knex.migrate.latest();
+});

@@ -15,10 +15,11 @@ jobs:
           npm install
           echo Setting environment variables...
           echo ${{ secrets.PORT }} >> .env
-          echo ${{ secrets.DB_NAME }} >> .env
-          echo ${{ secrets.DB_USERNAME }} >> .env
+          echo ${{ secrets.DB_CLIENT }} >> .env
+          echo ${{ secrets.DB_HOST }} >> .env
+          echo ${{ secrets.DB_USER }} >> .env
           echo ${{ secrets.DB_PASSWORD }} >> .env
-          echo ${{ secrets.DB_DIALECT }} >> .env
+          echo ${{ secrets.DB_NAME }} >> .env
           echo Building...
           npm run build
           echo Deploying...
