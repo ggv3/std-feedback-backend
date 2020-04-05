@@ -34,7 +34,7 @@ router.post('/updatestreamstatus', (req, res) => {
     .then((users) => {
       users.forEach((u) => {
         knex('twitch_users')
-          .where({ user_id: u.id })
+          .where({ user_id: u.user_id })
           .update({ is_online: !u.is_online })
           .then(() => {
             res
